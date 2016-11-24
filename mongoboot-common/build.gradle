@@ -1,0 +1,4 @@
+description = 'mongoboot-common'
+dependencies {
+
+}

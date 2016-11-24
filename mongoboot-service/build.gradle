@@ -1,0 +1,4 @@
+description = 'mongoboot-service'
+dependencies {
+	compile project(':mongoboot-persistence')
+} 

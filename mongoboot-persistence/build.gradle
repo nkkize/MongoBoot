@@ -1,0 +1,5 @@
+description = 'mongoboot-persistence'
+dependencies {
+	compile project(':mongoboot-common')
+	compile libraries.spring_mongo_db
+}

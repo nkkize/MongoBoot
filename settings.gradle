@@ -1,0 +1,4 @@
+include 'mongoboot-common'
+include 'mongoboot-persistence'
+include 'mongoboot-service'
+include 'mongoboot-web'
