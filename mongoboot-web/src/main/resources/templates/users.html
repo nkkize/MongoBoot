@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<object th:include="fragments/header :: scripts" th:remove="tag"></object>
+</head>
+<body>
+	<nav th:replace="fragments/header :: navbar"></nav>
+	<div class="container">
+		<div class="row">
+			<div class="span8">
+				<fieldset>
+					<legend>User Details</legend>
+					<div class="table-responsive" th:if="${users != null}">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>First Name</th>
+									<th>Last Name</th>
+								</tr>
+							</thead>
+							<tbody id="tableBody">
+								<tr th:each="user:${users}">
+									<form class="form-horizontal" id="deleteUser" action="/admin/deleteUser" method='post'>
+										<td class="itemId" th:text="${user.id}"></td>
+										<td th:text="${user.firstName}"></td>
+										<td th:text="${user.lastName}"></td>
+										<td>
+											<input type="hidden" th:value="${user.id}" id="userId" name="userId"></input>
+											<button type="submit" class="btn btn-lg btn-primary btn-block btn-signin">Remove</button>
+										</td>
+									</form>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<form class="form-horizontal" id="deleteUser" action="/addUser" method='post'>
+						<button type="submit" class="btn btn-lg btn-primary btn-block btn-signin">Add User</button>
+					</form>
+					<div class="col-md-4 text-center" th:if="${users == null}">
+						<h3>No user registered!</h3>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

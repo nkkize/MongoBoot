@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<object th:include="fragments/header :: scripts" th:remove="tag"></object>
+</head>
+<body>
+	<nav th:replace="fragments/header :: navbar"></nav>
+	<div class="container">
+		<div class="row">
+			<div class="span8">
+				<fieldset>
+					<legend>Questions</legend>
+					<div class="table-responsive" th:if="${questions != null}">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Title</th>
+									<th>Input</th>
+								</tr>
+							</thead>
+							<tbody id="tableBody">
+								<tr th:each="question:${questions}">
+									<form class="form-horizontal" id="deletequestion" action="/admin/deletequestion" method='post'>
+										<td th:text="${question.title}"></td>
+										<td th:text="${question.input}"></td>
+										<td>
+											<input type="hidden" th:value="${question.id}" id="questionId" name="questionId"></input>
+											<button type="submit" class="btn btn-lg btn-primary btn-block btn-signin">Remove</button>
+										</td>
+									</form>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<form class="form-horizontal" id="add" action="/home">
+						<button type="submit" class="btn btn-lg btn-primary btn-block btn-signin">Add question</button>
+					</form>
+					<div class="col-md-4 text-center" th:if="${questions == null}">
+						<h3>No question Asked!</h3>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
